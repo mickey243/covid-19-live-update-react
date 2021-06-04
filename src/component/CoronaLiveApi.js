@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Axios from 'axios';
-import { Button ,Form} from 'reactstrap';
+import { Button, Form } from 'reactstrap';
 import MyCard from './MyCard';
+
 
 const CoronaLiveApi = () => {
   const [country, setCountry] = useState("");
@@ -9,6 +10,7 @@ const CoronaLiveApi = () => {
   const [recovered, setRecovered] = useState([]);
   const [deaths, setDeaths] = useState([]);
   const [lastUpdate, setLastUpdate] = useState([]);
+
 
   //api which get input data from user
   const baseurl = `https://covid19.mathdro.id/api/countries/${country}`;
@@ -41,11 +43,12 @@ const CoronaLiveApi = () => {
   return (
     <div>
       <Form onSubmit={fetchData} >
-      <input type="text" className="display-6 text-center text-primary" placeholder="" value={country} onChange={(e) => setCountry(e.target.value)} />
-      <br />
-      <Button  className="m-2" color="warning">Clicks</Button>
+        <input type="text" className="display-6 text-center text-primary" placeholder="" value={country} onChange={(e) => setCountry(e.target.value)} />
+        <br />
+        <Button className="m-2" color="warning" disabled={!country} variant="contained">Clicks</Button>
       </Form>
-      <MyCard confirmed={confirmed} recovered={recovered} deaths={deaths} lastUpdate={lastUpdate} country={country}/>
+      <MyCard confirmed={confirmed} recovered={recovered} deaths={deaths} lastUpdate={lastUpdate} country={country} />
+
       {/* <h1>Last Update : {lastUpdate}</h1>
       <h1 className="text-warning">confirmed cases are : {confirmed.value}</h1>
       <h1 className="text-success">Recovered cases are : {recovered.value}</h1>
